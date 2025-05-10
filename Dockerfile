@@ -1,9 +1,11 @@
-FROM openjdk:21-jdk-slim
-
+# Stage 1: Build
+FROM maven:3.9.6-eclipse-temurin-21 as builder
 WORKDIR /app
-COPY target/recipeApi-0.0.1-SNAPSHOT.jar app.jar
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Unpack the JAR so we can access files like application.properties
-RUN mkdir unpacked && cd unpacked && jar -xf ../app.jar
-
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# Stage 2: Run
+FROM openjdk:21-jdk-slim
+WORKDIR /app
+COPY --from=builder /app/target/recipeApi-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
