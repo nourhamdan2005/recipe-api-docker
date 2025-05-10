@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package projectoop.recipeApi.model;
 
 import jakarta.validation.constraints.NotBlank;
@@ -9,24 +5,31 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
 @Document(collection = "recipes")  // This maps to the MongoDB collection "recipes"
 public class Recipe {
-    
+
     @Id
     private String id;
+
     @NotBlank(message = "Title is required")
     private String title;
-    @NotNull(message = "Ingredients are required")
-@Size(min = 1, message = "At least one ingredient is required")
 
+    @NotNull(message = "Ingredients are required")
+    @Size(min = 1, message = "At least one ingredient is required")
     private List<String> ingredients;
+
     private List<String> instructions;
+
     @NotNull(message = "Cooking time is required")
     private int cookingTime; // in minutes
+
     @NotBlank(message = "Category is required")
     private String category;
+
+    private String createdBy; // ✅ NEW FIELD
 
     // Constructors
     public Recipe() {}
@@ -86,5 +89,26 @@ public class Recipe {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe {\n" +
+               "  ID: " + id + "\n" +
+               "  Title: " + title + "\n" +
+               "  Ingredients: " + ingredients + "\n" +
+               "  Instructions: " + instructions + "\n" +
+               "  Cooking Time: " + cookingTime + " minutes\n" +
+               "  Category: " + category + "\n" +
+               "  Created By: " + createdBy + "\n" +
+               "}";
     }
 }

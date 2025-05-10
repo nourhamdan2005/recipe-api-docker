@@ -8,7 +8,7 @@ public class RecipeApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RecipeApiApplication.class, args);
-                System.out.print("hiii");
+               System.out.println("hi");
 	}
 
 }

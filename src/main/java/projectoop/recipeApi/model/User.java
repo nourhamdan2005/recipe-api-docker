@@ -1,16 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package projectoop.recipeApi.model;
 
-/**
- *
- * @author user
- */
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "users")
 public class User {
-      private String username;
+
+    @Id
+    private String id;
+    private String username;
     private String password;
+    private UserRole role; // NEW FIELD
+
+    // Constructors
+    public User() {}
+
+    public User(String username, String password, UserRole role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    // Getters and Setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -28,9 +46,11 @@ public class User {
         this.password = password;
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public UserRole getRole() {
+        return role;
     }
-    
-}
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+} 

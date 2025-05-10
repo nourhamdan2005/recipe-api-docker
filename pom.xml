@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -7,7 +8,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>projectoop</groupId>
@@ -21,32 +22,72 @@
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Starter Web (for creating RESTful APIs) -->
+
+        <!-- Web (REST API) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Spring Boot Starter Data MongoDB (for MongoDB database support) -->
+        <!-- MongoDB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
-        <!-- Spring Boot Starter Validation (for input validation) -->
+        <!-- Validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- Lombok (to reduce boilerplate code like getters/setters) -->
+        <!-- Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- JWT -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Swagger UI for API docs -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.0.4</version>
+        </dependency>
+
+        <!-- JSON (for HttpClient/ConsoleApp) -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230227</version>
+        </dependency>
+
+        <!-- Lombok (optional, no errors if unused) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot DevTools (for auto-reloading during development) -->
+        <!-- Devtools (auto-reload in dev) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -54,48 +95,18 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter Test (for writing tests) -->
+        <!-- Unit testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            
         </dependency>
-         <dependency>
-        <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-        <version>2.1.0</version>
-    </dependency>
-<!-- Spring Security -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-security</artifactId>
-</dependency>
-
-<!-- JWT -->
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-api</artifactId>
-    <version>0.11.5</version>
-</dependency>
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-impl</artifactId>
-    <version>0.11.5</version>
-    <scope>runtime</scope>
-</dependency>
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-jackson</artifactId>
-    <version>0.11.5</version>
-    <scope>runtime</scope>
-</dependency>
 
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Maven Compiler Plugin (for compiling the project) -->
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -109,22 +120,15 @@
                 </configuration>
             </plugin>
 
-            <!-- Spring Boot Maven Plugin (for building and running the Spring Boot application) -->
+            <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <!-- Specify the main class for the Spring Boot application -->
                     <mainClass>projectoop.recipeApi.RecipeApiApplication</mainClass>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                    
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>
